@@ -29,3 +29,12 @@ data_load_state.text('Loading data...done!')
 # 부제목 만들기
 st.subheader('Raw data')
 st.write(data)
+
+data['hour'] = data[DATE_COLUMN].dt.hour
+hist_values = np.histogram(data['hour'], bins=24, range=(0,24))[0]
+
+st.bar_chart(hist_values)
+
+# 지도에 데이터 표시
+st.subheader('Map of all pickups')
+st.map(data)
